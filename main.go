@@ -3,10 +3,10 @@ package main
 import (
 	"log"
 
-	"./src/libs"
-	"./src/models"
-	"./src/routes"
-	"./src/utils"
+	"github.com/AlecsisDuarte/crossing-api/libs"
+	"github.com/AlecsisDuarte/crossing-api/models"
+	"github.com/AlecsisDuarte/crossing-api/routes"
+	"github.com/AlecsisDuarte/crossing-api/utils"
 )
 
 func init() {

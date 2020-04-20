@@ -15,6 +15,9 @@
 # Firebase private key
 serviceAccountKey.json
 
+# Environment file
+.env
+
 ### Go Patch ###
 /vendor/
 /Godeps/
