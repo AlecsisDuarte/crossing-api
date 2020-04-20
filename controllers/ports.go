@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"../models"
-	"../utils"
+	"github.com/AlecsisDuarte/crossing-api/models"
+	"github.com/AlecsisDuarte/crossing-api/utils"
 	"github.com/gin-gonic/gin"
 )
 

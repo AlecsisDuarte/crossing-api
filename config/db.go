@@ -4,7 +4,7 @@ import (
 	"log"
 	"path/filepath"
 
-	"../utils"
+	"github.com/AlecsisDuarte/crossing-api/utils"
 )
 
 const TEST_DATABASE_NAME = "test_crossing"

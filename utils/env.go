@@ -10,6 +10,7 @@ import (
 const PRODUCTION_KEY = "PRODUCTION"
 const DATABASE_URL_KEY = "DATABASE_URL"
 const SERVICE_ACCOUNT_KEY_PATH_KEY = "SERVICE_ACCOUNT_KEY_PATH"
+const PORT_KEY = "PORT"
 
 func GetEnvString(key string) string {
 	v := os.Getenv(key)
@@ -53,4 +54,12 @@ func LoadEnvironment() {
 	if err := godotenv.Load(); err != nil {
 		log.Fatalln("Error loading ENVIRONMENT:", err)
 	}
+}
+
+func GetPort() string {
+	port := os.Getenv(PORT_KEY)
+	if IsEmpty(&port) {
+		port = "8080"
+	}
+	return ":" + port
 }

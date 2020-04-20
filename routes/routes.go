@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"../controllers"
+	"github.com/AlecsisDuarte/crossing-api/controllers"
 	"github.com/gin-gonic/gin"
 )
 

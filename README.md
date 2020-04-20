@@ -18,6 +18,7 @@ This project requires a [Firebase account](https://console.firebase.google.com/)
 ```
 
 5. Run with `go run main.go`
+6. Go to [localhost:8080](localhost:8080)
 
 ## License
 
