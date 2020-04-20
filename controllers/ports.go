@@ -1,6 +1,10 @@
 package controllers
 
 import (
+	"fmt"
+	"log"
+
+	"github.com/AlecsisDuarte/crossing-api/libs"
 	"github.com/AlecsisDuarte/crossing-api/models"
 	"github.com/AlecsisDuarte/crossing-api/utils"
 	"github.com/gin-gonic/gin"
@@ -24,4 +28,19 @@ func V1GetPort(c *gin.Context) {
 		utils.NotFound(c, err)
 	}
 	utils.Ok(c, port)
+}
+
+func V1RefreshPorts(c *gin.Context) {
+	log.Println("Refreshing CBP ports")
+	ports := libs.FetchPorts()
+	if len(*ports) == 0 {
+		utils.InternalError(c, "Error while fetching CBP information")
+	}
+	log.Println("Updating CBP ports")
+	if err := models.UpdateAllPorts(ports); err != nil {
+		utils.InternalError(c, "Error while updated CBP information")
+	}
+
+	response := fmt.Sprintf("Successfully updated %d ports", len(*ports))
+	utils.Ok(c, response)
 }
