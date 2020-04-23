@@ -23,8 +23,7 @@ func UpdateAllPorts(ports *[]PortCBP) (err error) {
 	log.Println("Mapping all ports to their respective PortNumber")
 	portMaps := make(map[string]PortCBP)
 	for _, port := range *ports {
-		portNumber := port.PortNumber
-		portMaps[port.portNumber] = append(portMaps, port)
+		portMaps[port.PortNumber] = append(portMaps, port)
 	}
 
 	if err := portsClient.Set(ctx, portMaps); err != nil {
