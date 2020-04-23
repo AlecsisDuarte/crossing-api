@@ -21,7 +21,7 @@ func InitClients(dbRef *db.Ref) {
 
 func UpdateAllPorts(ports *[]PortCBP) (err error) {
 	log.Println("Mapping all ports to their respective PortNumber")
-	portMaps := make(map[string]*PortCBP)
+	portMaps := make(map[string]PortCBP)
 	for i, port := range *ports {
 		portMaps[port.PortNumber] = (*ports)[i]
 	}
