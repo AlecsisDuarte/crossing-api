@@ -20,10 +20,11 @@ func InitClients(dbRef *db.Ref) {
 }
 
 func UpdateAllPorts(ports *[]PortCBP) (err error) {
-	portMaps := make(map[string]*PortCBP)
+	log.Println("Mapping all ports to their respective PortNumber")
+	portMaps := make(map[string]PortCBP)
 	for _, port := range *ports {
 		portNumber := port.PortNumber
-		portMaps[portNumber] = &port
+		portMaps[port.portNumber] = append(portMaps, port)
 	}
 
 	if err := portsClient.Set(ctx, portMaps); err != nil {
