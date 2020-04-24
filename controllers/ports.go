@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/AlecsisDuarte/crossing-api/libs"
-	"github.com/AlecsisDuarte/crossing-api/models"
-	"github.com/AlecsisDuarte/crossing-api/utils"
+	"crossing-api/libs"
+	"crossing-api/models"
+	"crossing-api/utils"
 	"github.com/gin-gonic/gin"
 )
 

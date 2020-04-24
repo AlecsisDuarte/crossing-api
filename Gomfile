@@ -1,4 +1,4 @@
-gom 'github.com/AlecsisDuarte/crossing-api'
+gom 'crossing-api'
 gom 'firebase.google.com/go'
 gom 'google.golang.org/api/option'
 gom 'github.com/gin-gonic/gin'

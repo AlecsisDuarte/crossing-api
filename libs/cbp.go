@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/AlecsisDuarte/crossing-api/models"
+	"crossing-api/models"
 )
 
 const CBP_URL = "https://bwt.cbp.gov/api/bwtnew"

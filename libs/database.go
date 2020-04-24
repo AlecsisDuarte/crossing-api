@@ -4,9 +4,10 @@ import (
 	"context"
 	"log"
 
+	"crossing-api/config"
+
 	firebase "firebase.google.com/go"
 	db "firebase.google.com/go/db"
-	"github.com/AlecsisDuarte/crossing-api/config"
 	"google.golang.org/api/option"
 )
 
