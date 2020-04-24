@@ -17,6 +17,7 @@ serviceAccountKey.json
 
 # Environment file
 .env
+app.yaml
 
 ### Go Patch ###
 /vendor/
