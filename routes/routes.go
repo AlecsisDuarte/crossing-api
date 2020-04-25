@@ -1,3 +1,4 @@
+// Package routes handles the maping of the URL paths to their specific controller
 package routes
 
 import (
@@ -6,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// SetupRouter starts the github.com/gin-gonic/gin engine with all the API's route
 func SetupRouter() *gin.Engine {
 	r := gin.Default()
 	v1 := r.Group("/v1")

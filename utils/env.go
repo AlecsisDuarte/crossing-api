@@ -1,3 +1,4 @@
+// Package utils stores all the utilities used in the project
 package utils
 
 import (
@@ -7,11 +8,12 @@ import (
 	"github.com/joho/godotenv"
 )
 
-const PRODUCTION_KEY = "PRODUCTION"
-const DATABASE_URL_KEY = "DATABASE_URL"
-const SERVICE_ACCOUNT_KEY_PATH_KEY = "SERVICE_ACCOUNT_KEY_PATH"
-const PORT_KEY = "PORT"
+const productionKey = "PRODUCTION"
+const databaseURLKey = "DATABASE_URL"
+const serviceAccountKeyPathKey = "SERVICE_ACCOUNT_KEY_PATH"
+const portKey = "PORT"
 
+// GetEnvString returns the ENV string value or calls os.Exit() if not found
 func GetEnvString(key string) string {
 	v := os.Getenv(key)
 	if IsEmpty(&key) {
@@ -20,6 +22,7 @@ func GetEnvString(key string) string {
 	return v
 }
 
+// GetEnvBool returns the ENV bool value or calls os.Exit() if not found
 func GetEnvBool(key string) bool {
 	s := GetEnvString(key)
 	v, err := ToBool(&s)
@@ -30,8 +33,9 @@ func GetEnvBool(key string) bool {
 	return v
 }
 
+// IsProduction returns true if the application is running in release mode or false if not or not set
 func IsProduction() bool {
-	s := GetEnvString(PRODUCTION_KEY)
+	s := GetEnvString(productionKey)
 	if IsEmpty(&s) {
 		return false
 	}
@@ -42,22 +46,26 @@ func IsProduction() bool {
 	return v
 }
 
+// GetServiceAccountKeyPath returns the path to the firebase private account key
 func GetServiceAccountKeyPath() string {
-	return GetEnvString(SERVICE_ACCOUNT_KEY_PATH_KEY)
+	return GetEnvString(serviceAccountKeyPathKey)
 }
 
+// GetDatabaseURL returns the URL of the database we will be working with
 func GetDatabaseURL() string {
-	return GetEnvString(DATABASE_URL_KEY)
+	return GetEnvString(databaseURLKey)
 }
 
+// LoadEnvironment loads all .env values into runtime ENV values
 func LoadEnvironment() {
 	if err := godotenv.Load(); err != nil {
 		log.Fatalln("Error loading ENVIRONMENT:", err)
 	}
 }
 
+// GetPort returns the PORT to be used on the server
 func GetPort() string {
-	port := os.Getenv(PORT_KEY)
+	port := os.Getenv(portKey)
 	if IsEmpty(&port) {
 		port = "8080"
 	}

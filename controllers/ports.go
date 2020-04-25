@@ -11,6 +11,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// V1GetPorts returns a list of PortCBP in a JSON structure
 func V1GetPorts(c *gin.Context) {
 	var ports []models.PortCBP
 	if err := models.GetAllPorts(&ports); err != nil {
@@ -20,6 +21,7 @@ func V1GetPorts(c *gin.Context) {
 	utils.Ok(c, ports)
 }
 
+// V1GetPort returns the PortCBP with the specified PortNumber
 func V1GetPort(c *gin.Context) {
 	portNumber := c.Params.ByName("portNumber")
 	if utils.IsNotInt(&portNumber) {
@@ -34,6 +36,7 @@ func V1GetPort(c *gin.Context) {
 	utils.Ok(c, port)
 }
 
+// V1RefreshPorts fetches all the CBPs port and updates the values in the database
 func V1RefreshPorts(c *gin.Context) {
 	log.Println("Refreshing CBP ports")
 	ports := libs.FetchPorts()

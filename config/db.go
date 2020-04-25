@@ -7,15 +7,17 @@ import (
 	"crossing-api/utils"
 )
 
-const TEST_DATABASE_NAME = "test_crossing"
-const PROD_DATABASE_NAME = "prod_crossing"
+const testDatabaseName = "test_crossing"
+const prodDatabaseName = "prod_crossing"
 
+// DBConfig stores all the information required to initialize firebase database
 type DBConfig struct {
 	DatabaseURL           string
 	DatabaseName          string
 	ServiceAccountKeyPath string
 }
 
+// BuildDBConfig initilizes the database configuration
 func BuildDBConfig() *DBConfig {
 	relativeAccountKeyPath := utils.GetServiceAccountKeyPath()
 	isProduction := utils.IsProduction()
@@ -25,9 +27,9 @@ func BuildDBConfig() *DBConfig {
 	if err != nil {
 		log.Fatalln("Error couldn't find firebase service account key:", err)
 	}
-	databaseName := TEST_DATABASE_NAME
+	databaseName := testDatabaseName
 	if isProduction {
-		databaseName = PROD_DATABASE_NAME
+		databaseName = prodDatabaseName
 	}
 
 	return &DBConfig{

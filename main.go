@@ -16,9 +16,6 @@ func init() {
 }
 
 func main() {
-	// ports := libs.FetchPorts()
-	// models.UpdateAllPorts(ports)
-
 	log.Println("Starting Crossing API server")
 	router := routes.SetupRouter()
 	port := utils.GetPort()

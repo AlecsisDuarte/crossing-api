@@ -11,10 +11,9 @@ import (
 	"google.golang.org/api/option"
 )
 
-///Reference towards the parent db
-var DBref *db.Ref
+var dbRef *db.Ref
 
-// We initialize Firebase database with the parent database
+// InitDatabase initializes Firebase database with the parent database
 func InitDatabase() *db.Ref {
 	ctx := context.Background()
 	dbConfig := config.BuildDBConfig()
@@ -34,6 +33,6 @@ func InitDatabase() *db.Ref {
 		log.Fatalln("Error initializing database client:", err)
 	}
 
-	DBref = client.NewRef(dbConfig.DatabaseName)
-	return DBref
+	dbRef = client.NewRef(dbConfig.DatabaseName)
+	return dbRef
 }
