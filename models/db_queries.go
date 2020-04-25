@@ -2,6 +2,7 @@ package models
 
 import (
 	"context"
+	"fmt"
 	"log"
 
 	db "firebase.google.com/go/db"
@@ -47,13 +48,12 @@ func GetAllPorts(ports *[]PortCBP) (err error) {
 }
 
 func GetPort(port *PortCBP, portNumber string) (err error) {
-	if portsClient.Child(portNumber).Key != portNumber {
-		log.Fatalln("Port not found #:", portNumber, err)
-	}
-	log.Fatalln(portsClient.Child(portNumber).Contains(ctx, &port).toString())
 	if err := portsClient.Child(portNumber).Get(ctx, &port); err != nil {
 		log.Fatalln("Error fetching port #:", portNumber, err)
 		return err
+	}
+	if port == nil {
+		return fmt.Errorf("Port # %s not found", portNumber)
 	}
 	return nil
 }
