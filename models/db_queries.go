@@ -8,16 +8,18 @@ import (
 	db "firebase.google.com/go/db"
 )
 
-const portBucket = "port"
+const (
+	portBucket = "port"
+)
 
 var (
-	portsClient *db.Ref
-	ctx         context.Context
+	portClient *db.Ref
+	ctx        context.Context
 )
 
 // InitClients initializes all the required database clients
 func InitClients(dbRef *db.Ref) {
-	portsClient = dbRef.Child(portBucket)
+	portClient = dbRef.Child(portBucket)
 	ctx = context.Background()
 }
 
@@ -30,8 +32,8 @@ func UpdateAllPorts(ports *[]PortCBP) (err error) {
 		portMaps[port.PortNumber] = (*ports)[i]
 	}
 
-	if err := portsClient.Set(ctx, portMaps); err != nil {
-		log.Fatalln("Error updating ports:", err)
+	if err := portClient.Set(ctx, portMaps); err != nil {
+		log.Panicln("Error updating ports map:", err)
 		return err
 	}
 	log.Println("Successfully updated ports")
@@ -41,8 +43,8 @@ func UpdateAllPorts(ports *[]PortCBP) (err error) {
 // GetAllPorts fetches the latest status of all the CBP ports
 func GetAllPorts(ports *[]PortCBP) (err error) {
 	portMaps := make(map[string]*PortCBP)
-	if err := portsClient.Get(ctx, &portMaps); err != nil {
-		log.Fatalln("Error reading value:", err)
+	if err := portClient.Get(ctx, &portMaps); err != nil {
+		log.Panicln("Error reading value:", err)
 		return err
 	}
 	for _, port := range portMaps {
@@ -53,12 +55,30 @@ func GetAllPorts(ports *[]PortCBP) (err error) {
 
 // GetPort fetches the port with the specified port number
 func GetPort(port *PortCBP, portNumber string) (err error) {
-	if err := portsClient.Child(portNumber).Get(ctx, &port); err != nil {
-		log.Fatalln("Error fetching port #:", portNumber, err)
+	if err := portClient.Child(portNumber).Get(ctx, &port); err != nil {
+		log.Panicln("Error fetching port #:", portNumber, err)
 		return err
 	}
 	if port == nil {
 		return fmt.Errorf("Port # %s not found", portNumber)
+	}
+	return nil
+}
+
+// GetPortsByBorder returns a list of ports with the specified border name
+func GetPortsByBorder(ports *[]PortCBP, border string) (err error) {
+	results, err := portClient.OrderByChild("border").EqualTo(border).GetOrdered(ctx)
+	if err != nil {
+		log.Panicln("Error querying ports by border:", err)
+		return err
+	}
+	for _, res := range results {
+		var port PortCBP
+		if err := res.Unmarshal(&port); err != nil {
+			log.Panicln("Error unmarshaling the ports:", err)
+			return err
+		}
+		*ports = append(*ports, port)
 	}
 	return nil
 }
