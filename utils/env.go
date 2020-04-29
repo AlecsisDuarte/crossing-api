@@ -37,10 +37,12 @@ func GetEnvBool(key string) bool {
 func IsProduction() bool {
 	s := GetEnvString(productionKey)
 	if IsEmpty(&s) {
+		log.Println("Production ENV key not set, defaulting into false")
 		return false
 	}
 	v, err := ToBool(&s)
 	if err != nil {
+		log.Println("Error while casting ENV Production value into bool, defaulting into false")
 		return false
 	}
 	return v

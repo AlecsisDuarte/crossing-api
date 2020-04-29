@@ -3,12 +3,18 @@ package routes
 
 import (
 	"crossing-api/controllers"
+	"crossing-api/utils"
+	"log"
 
 	"github.com/gin-gonic/gin"
 )
 
 // SetupRouter starts the github.com/gin-gonic/gin engine with all the API's route
 func SetupRouter() *gin.Engine {
+	if utils.IsProduction() {
+		log.Println("Running GIN in release mode")
+		gin.SetMode(gin.ReleaseMode)
+	}
 	r := gin.Default()
 	v1 := r.Group("/v1")
 	{
