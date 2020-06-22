@@ -24,6 +24,13 @@ func SetupRouter() *gin.Engine {
 		v1.GET("/refreshPorts", controllers.V1RefreshPorts)
 		v1.GET("/portsByCountry/:country", controllers.V1GetPortsByCountry)
 	}
+	v2 := r.Group("/v2")
+	{
+		v2.GET("/refreshMetadata", controllers.V2RefreshMetadata)
+		v2.GET("/countries", controllers.V2GetCountries)
+		v2.GET("/states/:countryId", controllers.V2GetStates)
+		v2.GET("/counties/:stateId", controllers.V2GetCounties)
+	}
 	r.GET("/", controllers.Index)
 	return r
 }

@@ -1,0 +1,128 @@
+{
+    "geographic_info": {
+        "countries": [
+            {
+                "name": "México",
+                "id": "mexico",
+                "currency": "MXN",
+                "tags": [ "MEXICO", "MEX", "MX", "MÉXICO", "SOUTH", "mexico", "méxico", "mex", "mx", "Mex" ]
+            },
+            {
+                "name": "Canada",
+                "id": "canada",
+                "currency": "CAD",
+                "tags": [ "CANADA", "CAN", "CA", "NORTH", "canada", "Canada", "can", "ca" ]
+            }
+        ],
+        "states": {
+            "mexico": [
+                {
+                    "name": "Baja California",
+                    "id": "baja_california"
+                },
+                {
+                    "name": "Sonora",
+                    "id": "sonora"
+                },
+                {
+                    "name": "Chihuahua",
+                    "id": "chihuahua"
+                },
+                {
+                    "name": "Coahuila",
+                    "id": "coahuila"
+                },
+                {
+                    "name": "Nuevo León",
+                    "id": "nuevo_leon"
+                },
+                {
+                    "name": "Taumalipas",
+                    "id": "taumalipas"
+                }
+            ], 
+            "canada": [
+                { 
+                    "name": "ontario",
+                    "id": "ontario"
+                },
+                { 
+                    "name": "british columbia",
+                    "id": "british_columbia"
+                },
+                { 
+                    "name": "yukon",
+                    "id": "yukon"
+                },
+                { 
+                    "name": "quebec",
+                    "id": "quebec"
+                },
+                { 
+                    "name": "saskatchewan",
+                    "id": "saskatchewan"
+                },
+                { 
+                    "name": "brunswick",
+                    "id": "brunswick"
+                },
+                { 
+                    "name": "manitoba",
+                    "id": "manitoba"
+                },
+                { 
+                    "name": "alberta",
+                    "id": "alberta"
+                }
+            ]
+        },
+        "counties": {
+            "baja_california": [
+                {
+                    "name": "tijuana",
+                    "ports": ["25060", "25040"]
+                },
+                {
+                    "name": "tecate",
+                    "ports": ["25050"]
+                },
+                {
+                    "name": "mexicali",
+                    "ports": ["25030", "25070", "25020"]
+                }
+            ],
+            "sonora": [
+                {
+                    "name": "san luis rio colorado",
+                    "ports": ["26080"]
+                },
+                {
+                    "name": "sonoyta",
+                    "ports": ["26020"]
+                },
+                {
+                    "name": "sonoyta",
+                    "ports": ["26020"]
+                }
+            ],
+            "chihuahua": [
+            ],
+            "coahuila": [
+            ],
+            "nuevo_leon": [
+            ],
+            "taumalipas": [
+            ]
+        }    
+    },
+    "translations": {
+        "es-mx": {
+            "MEXICO": "MÉXICO",
+            "Mexico": "México",
+            "mexico": "méxico",
+            "Nuevo Leon": "Nuevo León",
+            "NUEVO LEON": "NUEVO LEÓN",
+            "nuevo leon": "nuevo león"
+        }
+    }
+}
