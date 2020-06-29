@@ -9,15 +9,15 @@ import (
 )
 
 const (
-	baseURL      string = "https://api.exchangeratesapi.io/latest?"
-	baseKey      string = "base"
-	baseValue    string = "USD"
-	symbolsKey   string = "symbols"
-	symbolsValue string = "MXN,CAD"
+	baseURL             string = "https://api.exchangeratesapi.io/latest?"
+	baseKey             string = "base"
+	baseValue           string = "USD"
+	symbolsKey          string = "symbols"
+	exchangeDescription string = "Current and historical foreign exchange rates published by the European Central Bank"
 )
 
 // FetchExchangeRate makes a request to api.exchangeratesapi.io to fetch MXN and CAD exchanges rates using USD as base
-func FetchExchangeRate() *models.Exchange {
+func FetchExchangeRate(symbol string) *models.Exchange {
 	url, err := url.Parse(baseURL)
 	if err != nil {
 		log.Println("Error parsing the exchange url: ", err)
@@ -26,7 +26,7 @@ func FetchExchangeRate() *models.Exchange {
 
 	query := url.Query()
 	query.Set(baseKey, baseValue)
-	query.Add(symbolsKey, symbolsValue)
+	query.Add(symbolsKey, symbol)
 	url.RawQuery = query.Encode()
 	res, err := http.Get(url.String())
 
@@ -37,5 +37,7 @@ func FetchExchangeRate() *models.Exchange {
 	log.Println("Succesfully fetched the exchange rates")
 	var exchange models.Exchange
 	json.NewDecoder(res.Body).Decode(&exchange)
+	exchange.Source = url.String()
+	exchange.Description = exchangeDescription
 	return &exchange
 }

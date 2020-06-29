@@ -4,14 +4,12 @@
             {
                 "name": "México",
                 "id": "mexico",
-                "currency": "MXN",
-                "tags": [ "MEXICO", "MEX", "MX", "MÉXICO", "SOUTH", "mexico", "méxico", "mex", "mx", "Mex" ]
+                "currency": "MXN"
             },
             {
                 "name": "Canada",
                 "id": "canada",
-                "currency": "CAD",
-                "tags": [ "CANADA", "CAN", "CA", "NORTH", "canada", "Canada", "can", "ca" ]
+                "currency": "CAD"
             }
         ],
         "states": {
@@ -95,10 +93,6 @@
                 {
                     "name": "san luis rio colorado",
                     "ports": ["26080"]
-                },
-                {
-                    "name": "sonoyta",
-                    "ports": ["26020"]
                 },
                 {
                     "name": "sonoyta",

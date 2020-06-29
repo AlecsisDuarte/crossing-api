@@ -37,3 +37,12 @@ func ToInt(s *string) (v int, err error) {
 func ToBool(s *string) (b bool, err error) {
 	return strconv.ParseBool(*s)
 }
+
+// ToBoolOrDefault returns the value of the string to bool or the default value in case s has an invalid value
+func ToBoolOrDefault(s *string, defaultValue bool) bool {
+	val, err := ToBool(s)
+	if err != nil {
+		return defaultValue
+	}
+	return val
+}
