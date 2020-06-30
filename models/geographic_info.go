@@ -6,5 +6,4 @@ type GeographicInfo struct {
 	Countries []Country           `json:"countries,omitempty"`
 	States    map[string][]State  `json:"states,omitempty"`
 	Counties  map[string][]County `json:"counties,omitempty"`
-	Exchange  Exchange            `json:"exchange,omitempty"`
 }
