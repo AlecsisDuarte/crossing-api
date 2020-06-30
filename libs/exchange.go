@@ -13,10 +13,11 @@ const (
 	baseKey             string = "base"
 	baseValue           string = "USD"
 	symbolsKey          string = "symbols"
+	symbolsValue        string = "MXN,CAD"
 	exchangeDescription string = "Current and historical foreign exchange rates published by the European Central Bank"
 )
 
-// FetchExchangeRate makes a request to api.exchangeratesapi.io to fetch MXN and CAD exchanges rates using USD as base
+// FetchExchangeRate makes a request to api.exchangeratesapi.io to fetch the specifide symbols exchanges rates using USD as base
 func FetchExchangeRate(symbol string) *models.Exchange {
 	url, err := url.Parse(baseURL)
 	if err != nil {
@@ -40,4 +41,9 @@ func FetchExchangeRate(symbol string) *models.Exchange {
 	exchange.Source = url.String()
 	exchange.Description = exchangeDescription
 	return &exchange
+}
+
+// FetchAllExchangeRate makes a request to api.exchangeratesapi.io to fetch both MXN and CAD exchanges rates using USD as base
+func FetchAllExchangeRate() *models.Exchange {
+	return FetchExchangeRate(symbolsValue)
 }
