@@ -6,5 +6,5 @@ type Exchange struct {
 	Base        string             `json:"base,omitempty"`
 	Date        string             `json:"date,omitempty"`
 	Description string             `json:"description,omitempty"`
-	Source      string             `json:"Source,omitempty"`
+	Source      string             `json:"source,omitempty"`
 }
