@@ -7,4 +7,5 @@ type Exchange struct {
 	Date        string             `json:"date,omitempty"`
 	Description string             `json:"description,omitempty"`
 	Source      string             `json:"source,omitempty"`
+	Symbol      string             `json:"symbol,omitempty"`
 }

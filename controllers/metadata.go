@@ -21,6 +21,7 @@ func V1RefreshMetadata(c *gin.Context) {
 
 	for index, country := range metadata.GeographicInfo.Countries {
 		metadata.GeographicInfo.Countries[index].Exchange = *libs.FetchExchangeRate(country.Currency)
+		metadata.GeographicInfo.Countries[index].Exchange.Symbol = country.Currency
 	}
 
 	log.Println("Updating metadata")
@@ -42,9 +43,8 @@ func V1GetCountries(c *gin.Context) {
 		utils.InternalError(c, "Error while fetching the countries")
 		return
 	}
-	for countryIndex, country := range countries {
-		countries[countryIndex].Currency = ""
-		if expanded == true {
+	if expanded == true {
+		for countryIndex, country := range countries {
 			if err := models.GetStates(&countries[countryIndex].States, country.ID); err != nil {
 				log.Println("Error fetching metadata states for:", country.Name)
 				utils.InternalError(c, "Error while fetching the states")
