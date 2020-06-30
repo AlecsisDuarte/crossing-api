@@ -43,7 +43,7 @@ func FetchExchangeRate(symbol string) *models.Exchange {
 	return &exchange
 }
 
-// FetchAllExchangeRate makes a request to api.exchangeratesapi.io to fetch both MXN and CAD exchanges rates using USD as base
-func FetchAllExchangeRate() *models.Exchange {
+// FetchAllExchangeRates makes a request to api.exchangeratesapi.io to fetch both MXN and CAD exchanges rates using USD as base
+func FetchAllExchangeRates() *models.Exchange {
 	return FetchExchangeRate(symbolsValue)
 }

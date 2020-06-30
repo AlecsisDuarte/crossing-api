@@ -15,6 +15,7 @@ const (
 	countriesBucket      = "countries"
 	statesBucket         = "states"
 	countiesBucket       = "counties"
+	exchangeBucket       = "exchange"
 )
 
 var (
@@ -127,6 +128,17 @@ func GetCounties(counties *[]County, state string) (err error) {
 	log.Println("Fetching US counties for state:", state)
 	geographicInfo := metadataClient.Child(geographicInfoBucket)
 	if err := geographicInfo.Child(countiesBucket).Child(state).Get(ctx, &counties); err != nil {
+		log.Println("Error reading states:", err)
+		return err
+	}
+	return nil
+}
+
+// GetExchange fetches the geographic info's exchange rates
+func GetExchange(exchange *Exchange) (err error) {
+	log.Println("Fetching all exchange rates")
+	geographicInfo := metadataClient.Child(geographicInfoBucket)
+	if err := geographicInfo.Child(exchangeBucket).Get(ctx, &exchange); err != nil {
 		log.Println("Error reading states:", err)
 		return err
 	}

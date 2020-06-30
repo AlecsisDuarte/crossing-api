@@ -19,8 +19,9 @@ func V1RefreshMetadata(c *gin.Context) {
 		return
 	}
 
+	metadata.GeographicInfo.Exchange = *libs.FetchAllExchangeRates()
 	for index, country := range metadata.GeographicInfo.Countries {
-		metadata.GeographicInfo.Countries[index].Exchange = *libs.FetchExchangeRate(country.Currency)
+		metadata.GeographicInfo.Countries[index].ExchangeRate = metadata.GeographicInfo.Exchange.Rates[country.Currency]
 	}
 
 	log.Println("Updating metadata")
@@ -43,7 +44,6 @@ func V1GetCountries(c *gin.Context) {
 		return
 	}
 	if expanded == true {
-
 		for countryIndex, country := range countries {
 			if err := models.GetStates(&countries[countryIndex].States, country.ID); err != nil {
 				log.Println("Error fetching metadata states for:", country.Name)
@@ -59,7 +59,16 @@ func V1GetCountries(c *gin.Context) {
 			}
 		}
 	}
-	utils.Ok(c, countries)
+	var exchange models.Exchange
+	if err := models.GetExchange(&exchange); err != nil {
+		log.Println("Error fetching the exchange rates")
+		utils.InternalError(c, "Error while fetching the exchange rates")
+		return
+	}
+	var geographicInfo models.GeographicInfo
+	geographicInfo.Exchange = exchange
+	geographicInfo.Countries = countries
+	utils.Ok(c, geographicInfo)
 }
 
 // V1GetStates fetches the states from the metadata bucket
