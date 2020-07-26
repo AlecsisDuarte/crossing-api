@@ -1,4 +1,4 @@
-# Crossing API
+# Crossing API ![gopherbadger-tag-do-not-edit]()
 
 Simple, fast and reliable RESTful API to fetch information about U.S. border's wait times.
 
