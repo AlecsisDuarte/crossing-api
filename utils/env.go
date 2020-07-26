@@ -2,10 +2,12 @@
 package utils
 
 import (
-	"log"
 	"os"
 
+	"crossing-api/libs/log"
+
 	"github.com/joho/godotenv"
+	"github.com/pkg/errors"
 )
 
 const productionKey = "PRODUCTION"
@@ -16,8 +18,8 @@ const portKey = "PORT"
 // GetEnvString returns the ENV string value or calls os.Exit() if not found
 func GetEnvString(key string) string {
 	v := os.Getenv(key)
-	if IsEmpty(&key) {
-		log.Fatalf("Couldn't find the ENVIROMENT key=%s", key)
+	if IsEmpty(&v) {
+		log.Fatal("Couldn't find the ENVIROMENT key=%s", errors.New("Unable to find the ENVIRONMENT key"), key)
 	}
 	return v
 }
@@ -27,7 +29,7 @@ func GetEnvBool(key string) bool {
 	s := GetEnvString(key)
 	v, err := ToBool(&s)
 	if err != nil {
-		log.Fatalf("Error while pasring ENVIRONMENT key=%s value=%s into bool\n", key, s)
+		log.Fatal("Error while parsing ENVIRONMENT key=%s value=%s into bool", err, key, s)
 		return false
 	}
 	return v
@@ -37,12 +39,12 @@ func GetEnvBool(key string) bool {
 func IsProduction() bool {
 	s := GetEnvString(productionKey)
 	if IsEmpty(&s) {
-		log.Println("Production ENV key not set, defaulting into false")
+		log.Warn("Production ENV key not set, defaulting into false")
 		return false
 	}
 	v, err := ToBool(&s)
 	if err != nil {
-		log.Println("Error while casting ENV Production value into bool, defaulting into false")
+		log.Warn("Error while casting ENV Production value into bool, defaulting into false")
 		return false
 	}
 	return v
@@ -61,7 +63,7 @@ func GetDatabaseURL() string {
 // LoadEnvironment loads all .env values into runtime ENV values
 func LoadEnvironment() {
 	if err := godotenv.Load(); err != nil {
-		log.Fatalln("Error loading ENVIRONMENT:", err)
+		log.Fatal("Error loading ENVIRONMENT", err)
 	}
 }
 

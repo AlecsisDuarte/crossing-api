@@ -2,11 +2,10 @@ package libs
 
 import (
 	"encoding/json"
-	"fmt"
-	"log"
 	"net/http"
 	"strings"
 
+	"crossing-api/libs/log"
 	"crossing-api/models"
 )
 
@@ -18,15 +17,15 @@ const (
 
 // FetchPorts fetches the latest status of the CBP ports
 func FetchPorts() *[]models.PortCBP {
-	log.Println("Calling CBP to get latest status of the ports")
+	log.Info("Calling CBP to get latest status of the ports")
 	var ports = make([]models.PortCBP, 0)
 	res, err := http.Get(cbpURL)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error while fetching CBP info", err)
 		return &ports
 	}
 	json.NewDecoder(res.Body).Decode(&ports)
-	fmt.Printf("Successfully fetch %d ports\n", len(ports))
+	log.Info("Successfully fetch %d ports\n", len(ports))
 	return &ports
 }
 
@@ -49,7 +48,7 @@ func TranslateCountryToCBPBorder(country string) (border string, found bool) {
 	countryToBorder := countryToBorderMap()
 	border, found = countryToBorder[lowerCaseCountry]
 	if !found {
-		fmt.Println("The country ", country, " is not a valid US border")
+		log.Info("The country %v is not a valid US border", country)
 	}
 	return border, found
 }

@@ -1,9 +1,10 @@
 package libs
 
 import (
+	"crossing-api/libs/log"
 	"crossing-api/models"
 	"encoding/json"
-	"log"
+
 	"net/http"
 	"net/url"
 )
@@ -21,7 +22,7 @@ const (
 func FetchExchangeRate(symbol string) *models.Exchange {
 	url, err := url.Parse(baseURL)
 	if err != nil {
-		log.Println("Error parsing the exchange url: ", err)
+		log.Error("Error parsing the exchange url %v", err, baseURL)
 		return nil
 	}
 
@@ -32,10 +33,10 @@ func FetchExchangeRate(symbol string) *models.Exchange {
 	res, err := http.Get(url.String())
 
 	if err != nil {
-		log.Println("Error fetching the exchanges: ", err)
+		log.Error("Error fetching the exchanges", err)
 		return nil
 	}
-	log.Println("Succesfully fetched the exchange rates")
+	log.Info("Succesfully fetched the exchange rates")
 	var exchange models.Exchange
 	json.NewDecoder(res.Body).Decode(&exchange)
 	exchange.Source = url.String()

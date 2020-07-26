@@ -3,9 +3,9 @@ package libs
 import (
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"os"
 
+	"crossing-api/libs/log"
 	"crossing-api/models"
 )
 
@@ -13,7 +13,7 @@ import (
 func GetMetadataJSON() *models.Metadata {
 	metadataJSON, err := os.Open("database/metadata.json")
 	if err != nil {
-		log.Fatalln("Error reading database default metadata.json")
+		log.Fatal("Error reading database default metadata.json", err)
 	}
 
 	defer metadataJSON.Close()
@@ -22,6 +22,6 @@ func GetMetadataJSON() *models.Metadata {
 
 	var metadata models.Metadata
 	json.Unmarshal([]byte(metadataByteValue), &metadata)
-	log.Println("Successfully read the Metadata.json")
+	log.Info("Successfully read the Metadata.json")
 	return &metadata
 }

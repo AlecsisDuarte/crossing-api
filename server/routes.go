@@ -1,10 +1,9 @@
-// Package routes handles the maping of the URL paths to their specific controller
-package routes
+package server
 
 import (
 	"crossing-api/controllers"
+	"crossing-api/libs/log"
 	"crossing-api/utils"
-	"log"
 
 	"github.com/gin-gonic/gin"
 )
@@ -12,7 +11,7 @@ import (
 // SetupRouter starts the github.com/gin-gonic/gin engine with all the API's route
 func SetupRouter() *gin.Engine {
 	if utils.IsProduction() {
-		log.Println("Running GIN in release mode")
+		log.Info("Running GIN in release mode")
 		gin.SetMode(gin.ReleaseMode)
 	}
 	r := gin.Default()
