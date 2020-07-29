@@ -4,9 +4,8 @@ import (
 	"context"
 
 	"crossing-api/config"
-	"crossing-api/dao"
-	"crossing-api/libs/log"
-	"crossing-api/models"
+	dao "crossing-api/dao"
+	l "crossing-api/libs/log"
 
 	firebase "firebase.google.com/go"
 	db "firebase.google.com/go/db"
@@ -28,17 +27,16 @@ func Init() {
 
 	app, err := firebase.NewApp(ctx, conf, opt)
 	if err != nil {
-		log.Fatal("Error initializing firebase app", err)
+		l.Fatal("Error initializing firebase app", err)
 	}
 
 	client, err := app.Database(ctx)
 	if err != nil {
-		log.Fatal("Error initializing database client", err)
+		l.Fatal("Error initializing database client", err)
 	}
 
 	dbRef = client.NewRef(dbConfig.DatabaseName)
 	dao.InitClients(dbRef)
-	models.InitClients(dbRef)
 }
 
 // GetDB returns the database reference

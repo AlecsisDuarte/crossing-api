@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"log"
 
+	"crossing-api/dao"
 	"crossing-api/libs"
-	"crossing-api/models"
+	m "crossing-api/models"
 	"crossing-api/utils"
 
 	"github.com/gin-gonic/gin"
@@ -13,8 +14,8 @@ import (
 
 // V1GetPorts returns a list of PortCBP in a JSON structure
 func V1GetPorts(c *gin.Context) {
-	var ports []models.PortCBP
-	if err := models.GetAllPorts(&ports); err != nil {
+	var ports []m.PortCBP
+	if err := dao.GetAllPorts(&ports); err != nil {
 		utils.NotFound(c, err)
 		return
 	}
@@ -28,8 +29,8 @@ func V1GetPort(c *gin.Context) {
 		utils.BadRequest(c, "You must specify a valid port number")
 		return
 	}
-	var port models.PortCBP
-	if err := models.GetPort(&port, portNumber); err != nil {
+	var port m.PortCBP
+	if err := dao.GetPort(&port, portNumber); err != nil {
 		utils.NotFound(c, err)
 		return
 	}
@@ -45,7 +46,7 @@ func V1RefreshPorts(c *gin.Context) {
 		return
 	}
 	log.Println("Updating CBP ports")
-	if err := models.UpdateAllPorts(ports); err != nil {
+	if err := dao.UpdateAllPorts(ports); err != nil {
 		utils.InternalError(c, "Error while updated CBP information")
 		return
 	}
@@ -67,8 +68,8 @@ func V1GetPortsByCountry(c *gin.Context) {
 		utils.BadRequest(c, "The country has no border with the US")
 		return
 	}
-	var ports []models.PortCBP
-	if err := models.GetPortsByBorder(&ports, border); err != nil {
+	var ports []m.PortCBP
+	if err := dao.GetPortsByBorder(&ports, border); err != nil {
 		utils.NotFound(c, err)
 		return
 	}

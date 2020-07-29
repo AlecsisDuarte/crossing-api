@@ -1,8 +1,9 @@
 package controllers
 
 import (
-	"crossing-api/models"
+	m "crossing-api/models"
 
+	"crossing-api/dao"
 	"crossing-api/libs"
 	"crossing-api/libs/log"
 	"crossing-api/utils"
@@ -25,7 +26,7 @@ func V1RefreshMetadata(c *gin.Context) {
 	}
 
 	log.Info("Updating metadata")
-	if err := models.UploadMetadata(metadata); err != nil {
+	if err := dao.UploadMetadata(metadata); err != nil {
 		utils.InternalError(c, "Error while updating metadata information")
 		return
 	}
@@ -37,21 +38,21 @@ func V1GetCountries(c *gin.Context) {
 	log.Info("Fetching countries")
 	expandedStr := c.DefaultQuery("expanded", "false")
 	expanded := utils.ToBoolOrDefault(&expandedStr, false)
-	var countries []models.Country
-	if err := models.GetCountries(&countries); err != nil {
+	var countries []m.Country
+	if err := dao.GetCountries(&countries); err != nil {
 		log.Error("Error fetching metadata countries", err)
 		utils.InternalError(c, "Error while fetching the countries")
 		return
 	}
 	if expanded == true {
 		for countryIndex, country := range countries {
-			if err := models.GetStates(&countries[countryIndex].States, country.ID); err != nil {
+			if err := dao.GetStates(&countries[countryIndex].States, country.ID); err != nil {
 				log.Error("Error fetching metadata states for %v", err, country.Name)
 				utils.InternalError(c, "Error while fetching the states")
 				return
 			}
 			for stateIndex, state := range countries[countryIndex].States {
-				if err := models.GetCounties(&countries[countryIndex].States[stateIndex].Counties, state.ID); err != nil {
+				if err := dao.GetCounties(&countries[countryIndex].States[stateIndex].Counties, state.ID); err != nil {
 					log.Error("Error fetching metadata states for %v", err, state.Name)
 					utils.InternalError(c, "Error while fetching the states")
 					return
@@ -70,8 +71,8 @@ func V1GetStates(c *gin.Context) {
 		return
 	}
 	log.Info("Fetching states for country", country)
-	var states []models.State
-	if err := models.GetStates(&states, country); err != nil {
+	var states []m.State
+	if err := dao.GetStates(&states, country); err != nil {
 		utils.NotFound(c, err)
 		return
 	}
@@ -87,8 +88,8 @@ func V1GetCounties(c *gin.Context) {
 		return
 	}
 	log.Info("Fetching counties for state:", state)
-	var counties []models.County
-	if err := models.GetCounties(&counties, state); err != nil {
+	var counties []m.County
+	if err := dao.GetCounties(&counties, state); err != nil {
 		utils.NotFound(c, err)
 		return
 	}
