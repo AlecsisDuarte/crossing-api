@@ -15,11 +15,12 @@ import (
 // V1GetPorts returns a list of PortCBP in a JSON structure
 func V1GetPorts(c *gin.Context) {
 	var ports []m.PortCBP
-	if err := dao.GetAllPorts(&ports); err != nil {
+	portPt := &ports
+	if err := dao.GetAllPorts(&portPt); err != nil {
 		utils.NotFound(c, err)
 		return
 	}
-	utils.Ok(c, ports)
+	utils.Ok(c, *portPt)
 }
 
 // V1GetPort returns the PortCBP with the specified PortNumber

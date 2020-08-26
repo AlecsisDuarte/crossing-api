@@ -39,7 +39,7 @@ func print(severity string, format string, err error, params ...interface{}) {
 	prefix := fmt.Sprintf("%v [%v] -", time.Now().Format(time.RFC3339Nano), severity)
 	var posfix = format
 	if len(params) > 0 {
-		posfix = fmt.Sprintf(posfix, params)
+		posfix = fmt.Sprintf(posfix, params...)
 		if err != nil {
 			posfix = fmt.Sprintf("%v with downstream exception: \n%+v", posfix, err)
 		}
