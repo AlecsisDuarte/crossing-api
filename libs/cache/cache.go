@@ -12,6 +12,6 @@ func Put(key string, value interface{}) {
 // Get returns the value stored in the app's cache with the given key if found
 func Get(key string) (res interface{}, found bool) {
 	value, found := appCache.Get(key)
-	log.Info("[key %v] not [found %v] in appCache", key, found)
+	log.Info("[key %v] [found %v] in appCache", key, found)
 	return value, found
 }

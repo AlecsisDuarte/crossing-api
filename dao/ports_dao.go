@@ -144,5 +144,5 @@ func getAllCachedPorts() (ports *[]m.PortCBP) {
 
 func cacheAllPorts(ports *[]m.PortCBP) {
 	cache.Put(allPortsCachedKey, ports)
-	l.Info("Successfully cached the all the given ports")
+	l.Info("Successfully cached all the given ports")
 }
