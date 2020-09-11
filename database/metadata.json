@@ -41,35 +41,35 @@
             ], 
             "canada": [
                 { 
-                    "name": "ontario",
+                    "name": "Ontario",
                     "id": "ontario"
                 },
                 { 
-                    "name": "british columbia",
+                    "name": "British Columbia",
                     "id": "british_columbia"
                 },
                 { 
-                    "name": "yukon",
+                    "name": "Yukon",
                     "id": "yukon"
                 },
                 { 
-                    "name": "quebec",
+                    "name": "Quebec",
                     "id": "quebec"
                 },
                 { 
-                    "name": "saskatchewan",
+                    "name": "Saskatchewan",
                     "id": "saskatchewan"
                 },
                 { 
-                    "name": "brunswick",
+                    "name": "Brunswick",
                     "id": "brunswick"
                 },
                 { 
-                    "name": "manitoba",
+                    "name": "Manitoba",
                     "id": "manitoba"
                 },
                 { 
-                    "name": "alberta",
+                    "name": "Alberta",
                     "id": "alberta"
                 }
             ]
@@ -77,25 +77,25 @@
         "counties": {
             "baja_california": [
                 {
-                    "name": "tijuana",
+                    "name": "Tijuana",
                     "ports": ["25060", "25040"]
                 },
                 {
-                    "name": "tecate",
+                    "name": "Tecate",
                     "ports": ["25050"]
                 },
                 {
-                    "name": "mexicali",
+                    "name": "Mexicali",
                     "ports": ["25030", "25070", "25020"]
                 }
             ],
             "sonora": [
                 {
-                    "name": "san luis rio colorado",
+                    "name": "San Luis Rio Colorado",
                     "ports": ["26080"]
                 },
                 {
-                    "name": "sonoyta",
+                    "name": "Sonoyta",
                     "ports": ["26020"]
                 }
             ],
