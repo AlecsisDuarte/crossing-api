@@ -78,11 +78,11 @@
             "baja_california": [
                 {
                     "name": "Tijuana",
-                    "ports": ["25060", "25040"]
+                    "ports": ["250601", "250602", "250409", "250401", "250407"]
                 },
                 {
                     "name": "Tecate",
-                    "ports": ["25050"]
+                    "ports": ["250501"]
                 },
                 {
                     "name": "Mexicali",
@@ -92,11 +92,11 @@
             "sonora": [
                 {
                     "name": "San Luis Rio Colorado",
-                    "ports": ["26080"]
+                    "ports": ["260802"]
                 },
                 {
                     "name": "Sonoyta",
-                    "ports": ["26020"]
+                    "ports": ["260201"]
                 }
             ],
             "chihuahua": [

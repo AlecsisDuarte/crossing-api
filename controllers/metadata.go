@@ -38,29 +38,14 @@ func V1GetCountries(c *gin.Context) {
 	log.Info("Fetching countries")
 	expandedStr := c.DefaultQuery("expanded", "false")
 	expanded := utils.ToBoolOrDefault(&expandedStr, false)
-	var countries []m.Country
-	if err := dao.GetCountries(&countries); err != nil {
-		log.Error("Error fetching metadata countries", err)
+
+	var response m.ExpandedCountry
+	if err := dao.GetLocalCountries(&response, expanded); err != nil {
+		log.Error("Error fetching metadata countries with expanded = %v", err, expanded)
 		utils.InternalError(c, "Error while fetching the countries")
 		return
 	}
-	if expanded == true {
-		for countryIndex, country := range countries {
-			if err := dao.GetStates(&countries[countryIndex].States, country.ID); err != nil {
-				log.Error("Error fetching metadata states for %v", err, country.Name)
-				utils.InternalError(c, "Error while fetching the states")
-				return
-			}
-			for stateIndex, state := range countries[countryIndex].States {
-				if err := dao.GetCounties(&countries[countryIndex].States[stateIndex].Counties, state.ID); err != nil {
-					log.Error("Error fetching metadata states for %v", err, state.Name)
-					utils.InternalError(c, "Error while fetching the states")
-					return
-				}
-			}
-		}
-	}
-	utils.Ok(c, countries)
+	utils.Ok(c, response)
 }
 
 // V1GetStates fetches the states from the metadata bucket
