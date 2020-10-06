@@ -32,7 +32,7 @@ func GetLocalCountries(expandedCountry *m.ExpandedCountry, expanded bool) (err e
 			continue
 		}
 		countries[countryIndex].States = metadata.GeographicInfo.States[country.ID]
-		for stateIndex, state := range country.States {
+		for stateIndex, state := range countries[countryIndex].States {
 			countries[countryIndex].States[stateIndex].Counties = metadata.GeographicInfo.Counties[state.ID]
 		}
 	}
