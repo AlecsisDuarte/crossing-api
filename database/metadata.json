@@ -97,7 +97,28 @@
                 {
                     "name": "Sonoyta",
                     "ports": ["260201"]
+                },
+                {
+                    "name": "Nogales",
+                    "ports": ["260401", "260402"]
+                },
+                {
+                    "name": "Naco",
+                    "ports": ["260301"]
+                },
+                {
+                    "name": "Agua Prieta",
+                    "ports": ["260101"]
+                },
+                {
+                    "name": "Puerto Palomas",
+                    "ports": ["260101"]
+                },
+                {
+                    "name": "Santa Teresa",
+                    "ports": ["240801"]
                 }
+
             ],
             "chihuahua": [
             ],
