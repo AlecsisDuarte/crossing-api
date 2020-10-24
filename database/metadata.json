@@ -115,25 +115,25 @@
               {
                   "name": "Ciudad Juárez",
                   "ports": [
-                    "240204",// Stanton
-                    "l24501", // El Porvenir - Fort Hancock
-                    "240201", // Puente de las Américas - BOTA
-                    "240202",// Paso del Norte
-                    "240203", // Zaragoza
-                    "240401",// Tornillo-Guadalupe
-                    "240801"// Santa Teresa
+                    "240204",
+                    "l24501",
+                    "240201",
+                    "240202",
+                    "240203",
+                    "240401",
+                    "240801"
                   ]
               },
               {
                   "name": "Ojinaga",
                   "ports": [
-                    "240301"// Presidio - ojinaga
+                    "240301"
                   ]
               },
               {
                   "name": "Puerto Palomas",
                   "ports": [
-                    "240601"// Palomas - Columbus
+                    "240601"
                   ]
               }
             ],
@@ -141,14 +141,14 @@
               {
                   "name": "Ciudad Acuña",
                   "ports": [
-                    "230201",// Del Rio ,TX
+                    "230201"
                   ]
               },
               {
                   "name": "Piedras Negras",
                   "ports": [
-                    "230301", // Piedras Negras I - Eagle Pass - Puente Piedras Negras
-                    "230302"// Piedras Negras II - Eagle Pass INTL Bridge II - Puente Camino Real
+                    "230301",
+                    "230302"
                   ]
               }
             ],
@@ -158,17 +158,17 @@
               {
                   "name": "Ciudad Camargo",
                   "ports": [
-                    "230701"// Rio Grande, TX
+                    "230701"
                   ]
               },
               {
                   "name": "Ciudad Miguel Alemán",
                   "ports": [
-                    "231001"// Roma, TX
+                    "231001"
                   ]
               },
               {
-                  "name": "Matamoros",  // Brownsville
+                  "name": "Matamoros",
                   "ports": [
                     "535501",
                     "535502",
@@ -179,25 +179,25 @@
               {
                   "name": "Nuevo Laredo",
                   "ports": [
-                    "230401", // Laredo Bridge I
-                    "230402", // Laredo Bridge II
-                    "230403",// Colombia - Dolores
-                    "230404"// Nuevo Laredo III Puente internacional del comercio - world trade bridge
+                    "230401",
+                    "230402",
+                    "230403",
+                    "230404"
                   ]
               },
               {
                   "name": "Nuevo Progreso",
                   "ports": [
-                    "230901",// Nuevo Progreso - Weslaco
-                    "230902"// Donna
+                    "230901",
+                    "230902"
                   ]
               },
               {
                   "name": "Reynosa",
                   "ports": [
-                    "230501",// Hidalgo - Mc Allen-Hidalgo INTL Bridge
-                    "230502",// Pharr
-                    "230503" // Anzaldúas
+                    "230501",
+                    "230502",
+                    "230503" 
                   ]
               }
             ]
