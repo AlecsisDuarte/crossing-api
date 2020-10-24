@@ -76,17 +76,17 @@
         },
         "counties": {
             "baja_california": [
+              {
+                  "name": "Mexicali",
+                  "ports": ["250302", "250301", "250201"]
+              },
+              {
+                  "name": "Tecate",
+                  "ports": ["250501"]
+              },
                 {
                     "name": "Tijuana",
                     "ports": ["250601", "250602", "250409", "250401", "250407"]
-                },
-                {
-                    "name": "Tecate",
-                    "ports": ["250501"]
-                },
-                {
-                    "name": "Mexicali",
-                    "ports": ["250302", "250301", "250201"]
                 }
             ],
             "sonora": [
@@ -109,24 +109,97 @@
                 {
                     "name": "Agua Prieta",
                     "ports": ["260101"]
-                },
-                {
-                    "name": "Puerto Palomas",
-                    "ports": ["260101"]
-                },
-                {
-                    "name": "Santa Teresa",
-                    "ports": ["240801"]
                 }
-
             ],
             "chihuahua": [
+              {
+                  "name": "Ciudad Juárez",
+                  "ports": [
+                    "240204",// Stanton
+                    "l24501", // El Porvenir - Fort Hancock
+                    "240201", // Puente de las Américas - BOTA
+                    "240202",// Paso del Norte
+                    "240203", // Zaragoza
+                    "240401",// Tornillo-Guadalupe
+                    "240801"// Santa Teresa
+                  ]
+              },
+              {
+                  "name": "Ojinaga",
+                  "ports": [
+                    "240301"// Presidio - ojinaga
+                  ]
+              },
+              {
+                  "name": "Puerto Palomas",
+                  "ports": [
+                    "240601"// Palomas - Columbus
+                  ]
+              }
             ],
-            "coahuila": [
+            "coahuila": [ 
+              {
+                  "name": "Ciudad Acuña",
+                  "ports": [
+                    "230201",// Del Rio ,TX
+                  ]
+              },
+              {
+                  "name": "Piedras Negras",
+                  "ports": [
+                    "230301", // Piedras Negras I - Eagle Pass - Puente Piedras Negras
+                    "230302"// Piedras Negras II - Eagle Pass INTL Bridge II - Puente Camino Real
+                  ]
+              }
             ],
             "nuevo_leon": [
             ],
-            "taumalipas": [
+            "taumalipas": [ 
+              {
+                  "name": "Ciudad Camargo",
+                  "ports": [
+                    "230701"// Rio Grande, TX
+                  ]
+              },
+              {
+                  "name": "Ciudad Miguel Alemán",
+                  "ports": [
+                    "231001"// Roma, TX
+                  ]
+              },
+              {
+                  "name": "Matamoros",  // Brownsville
+                  "ports": [
+                    "535501",
+                    "535502",
+                    "535503",
+                    "535504"
+                  ]
+              },
+              {
+                  "name": "Nuevo Laredo",
+                  "ports": [
+                    "230401", // Laredo Bridge I
+                    "230402", // Laredo Bridge II
+                    "230403",// Colombia - Dolores
+                    "230404"// Nuevo Laredo III Puente internacional del comercio - world trade bridge
+                  ]
+              },
+              {
+                  "name": "Nuevo Progreso",
+                  "ports": [
+                    "230901",// Nuevo Progreso - Weslaco
+                    "230902"// Donna
+                  ]
+              },
+              {
+                  "name": "Reynosa",
+                  "ports": [
+                    "230501",// Hidalgo - Mc Allen-Hidalgo INTL Bridge
+                    "230502",// Pharr
+                    "230503" // Anzaldúas
+                  ]
+              }
             ]
         }    
     },
