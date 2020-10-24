@@ -92,7 +92,7 @@
             "sonora": [
                 {
                     "name": "San Luis Rio Colorado",
-                    "ports": ["260802"]
+                    "ports": [ "260801", "260802"]
                 },
                 {
                     "name": "Sonoyta",
