@@ -1,216 +1,393 @@
 {
-    "geographic_info": {
-        "countries": [
-            {
-                "name": "México",
-                "id": "mexico",
-                "currency": "MXN"
-            },
-            {
-                "name": "Canada",
-                "id": "canada",
-                "currency": "CAD"
-            }
-        ],
-        "states": {
-            "mexico": [
-                {
-                    "name": "Baja California",
-                    "id": "baja_california"
-                },
-                {
-                    "name": "Sonora",
-                    "id": "sonora"
-                },
-                {
-                    "name": "Chihuahua",
-                    "id": "chihuahua"
-                },
-                {
-                    "name": "Coahuila",
-                    "id": "coahuila"
-                },
-                {
-                    "name": "Nuevo León",
-                    "id": "nuevo_leon"
-                },
-                {
-                    "name": "Taumalipas",
-                    "id": "taumalipas"
-                }
-            ], 
-            "canada": [
-                { 
-                    "name": "Ontario",
-                    "id": "ontario"
-                },
-                { 
-                    "name": "British Columbia",
-                    "id": "british_columbia"
-                },
-                { 
-                    "name": "Yukon",
-                    "id": "yukon"
-                },
-                { 
-                    "name": "Quebec",
-                    "id": "quebec"
-                },
-                { 
-                    "name": "Saskatchewan",
-                    "id": "saskatchewan"
-                },
-                { 
-                    "name": "Brunswick",
-                    "id": "brunswick"
-                },
-                { 
-                    "name": "Manitoba",
-                    "id": "manitoba"
-                },
-                { 
-                    "name": "Alberta",
-                    "id": "alberta"
-                }
-            ]
+  "geographic_info": {
+    "countries": [
+      {
+        "name": "México",
+        "id": "mexico",
+        "currency": "MXN"
+      },
+      {
+        "name": "Canada",
+        "id": "canada",
+        "currency": "CAD"
+      }
+    ],
+    "states": {
+      "mexico": [
+        {
+          "name": "Baja California",
+          "id": "baja_california"
         },
-        "counties": {
-            "baja_california": [
-              {
-                  "name": "Mexicali",
-                  "ports": ["250302", "250301", "250201"]
-              },
-              {
-                  "name": "Tecate",
-                  "ports": ["250501"]
-              },
-                {
-                    "name": "Tijuana",
-                    "ports": ["250601", "250602", "250409", "250401", "250407"]
-                }
-            ],
-            "sonora": [
-                {
-                    "name": "San Luis Rio Colorado",
-                    "ports": [ "260801", "260802"]
-                },
-                {
-                    "name": "Sonoyta",
-                    "ports": ["260201"]
-                },
-                {
-                    "name": "Nogales",
-                    "ports": ["260401", "260402"]
-                },
-                {
-                    "name": "Naco",
-                    "ports": ["260301"]
-                },
-                {
-                    "name": "Agua Prieta",
-                    "ports": ["260101"]
-                }
-            ],
-            "chihuahua": [
-              {
-                  "name": "Ciudad Juárez",
-                  "ports": [
-                    "240204",
-                    "l24501",
-                    "240201",
-                    "240202",
-                    "240203",
-                    "240401",
-                    "240801"
-                  ]
-              },
-              {
-                  "name": "Ojinaga",
-                  "ports": [
-                    "240301"
-                  ]
-              },
-              {
-                  "name": "Puerto Palomas",
-                  "ports": [
-                    "240601"
-                  ]
-              }
-            ],
-            "coahuila": [ 
-              {
-                  "name": "Ciudad Acuña",
-                  "ports": [
-                    "230201"
-                  ]
-              },
-              {
-                  "name": "Piedras Negras",
-                  "ports": [
-                    "230301",
-                    "230302"
-                  ]
-              }
-            ],
-            "nuevo_leon": [
-            ],
-            "taumalipas": [ 
-              {
-                  "name": "Ciudad Camargo",
-                  "ports": [
-                    "230701"
-                  ]
-              },
-              {
-                  "name": "Ciudad Miguel Alemán",
-                  "ports": [
-                    "231001"
-                  ]
-              },
-              {
-                  "name": "Matamoros",
-                  "ports": [
-                    "535501",
-                    "535502",
-                    "535503",
-                    "535504"
-                  ]
-              },
-              {
-                  "name": "Nuevo Laredo",
-                  "ports": [
-                    "230401",
-                    "230402",
-                    "230403",
-                    "230404"
-                  ]
-              },
-              {
-                  "name": "Nuevo Progreso",
-                  "ports": [
-                    "230901",
-                    "230902"
-                  ]
-              },
-              {
-                  "name": "Reynosa",
-                  "ports": [
-                    "230501",
-                    "230502",
-                    "230503" 
-                  ]
-              }
-            ]
-        }    
-    },
-    "translations": {
-        "es-mx": {
-            "MEXICO": "MÉXICO",
-            "Mexico": "México",
-            "mexico": "méxico",
-            "Nuevo Leon": "Nuevo León",
-            "NUEVO LEON": "NUEVO LEÓN",
-            "nuevo leon": "nuevo león"
+        {
+          "name": "Sonora",
+          "id": "sonora"
+        },
+        {
+          "name": "Chihuahua",
+          "id": "chihuahua"
+        },
+        {
+          "name": "Coahuila",
+          "id": "coahuila"
+        },
+        {
+          "name": "Nuevo León",
+          "id": "nuevo_leon"
+        },
+        {
+          "name": "Taumalipas",
+          "id": "taumalipas"
         }
+      ],
+      "canada": [
+        {
+          "name": "Ontario",
+          "id": "ontario"
+        },
+        {
+          "name": "British Columbia",
+          "id": "british_columbia"
+        },
+        {
+          "name": "Yukon",
+          "id": "yukon"
+        },
+        {
+          "name": "Quebec",
+          "id": "quebec"
+        },
+        {
+          "name": "Saskatchewan",
+          "id": "saskatchewan"
+        },
+        {
+          "name": "New Brunswick",
+          "id": "brunswick"
+        },
+        {
+          "name": "Manitoba",
+          "id": "manitoba"
+        },
+        {
+          "name": "Alberta",
+          "id": "alberta"
+        }
+      ]
+    },
+    "counties": {
+      "alberta": [
+        {
+          "name": "Coutts",
+          "ports": [
+            "331001",
+            ""
+          ]
+        }
+      ],
+      "british_columbia": [
+        {
+          "name": "Abbotsford",
+          "ports": [
+            "300901",
+            "302301"
+          ]
+        },
+        {
+          "name": "Delta",
+          "ports": [
+            "300403"
+          ]
+        },
+        {
+          "name": "Surrey",
+          "ports": [
+            "300401",
+            "300402"
+          ]
+        }
+      ],
+      "brunswick": [
+        {
+          "name": "Edmundston",
+          "ports": [
+            "010901"
+          ]
+        },
+        {
+          "name": "Saint Stephen",
+          "ports": [
+            "011502",
+            "011503",
+            "011501"
+          ]
+        },
+        {
+          "name": "Woodstock, Carleton",
+          "ports": [
+            "010601"
+          ]
+        }
+      ],
+      "manitoba": [
+        {
+          "name": "Emerson",
+          "ports": [
+            "340101"
+          ]
+        }
+      ],
+      "ontario": [
+        {
+          "name": "Cornwall",
+          "ports": [
+            "070401"
+          ] // 
+        },
+        {
+          "name": "Fort Frances",
+          "ports": [
+            "360401"
+          ]
+        },
+        {
+          "name": "Landsdowne",
+          "ports": [
+            "070801"
+          ]
+        },
+        {
+          "name": "Niagara Falls",
+          "ports": [
+            "090102",
+            "090103",
+            "090104"
+          ]
+        },
+        {
+          "name": "Prescott",
+          "ports": [
+            "070101"
+          ]
+        },
+        {
+          "name": "Fort Erie / QEW",
+          "ports": [
+            "090101"
+          ]
+        },
+        {
+          "name": "Sarnia",
+          "ports": [
+            "380201"
+          ]
+        },
+        {
+          "name": "Sault Sainte Marie",
+          "ports": [
+            "380301"
+          ]
+        },
+        {
+          "name": "Windsor",
+          "ports": [
+            "380001",
+            "380002"
+          ]
+        }
+      ],
+      "quebec": [
+        {
+          "name": "Stanhope",
+          "ports": [
+            "021101"
+          ]
+        },
+        {
+          "name": "Stanstead",
+          "ports": [
+            "020901"
+          ]
+        },
+        {
+          "name": "Saint-Armand",
+          "ports": [
+            "021201"
+          ]
+        },
+        {
+          "name": "Saint-Bernard-de-Lacolle",
+          "ports": [
+            "071201"
+          ]
+        },
+        {
+          "name": "Saint-Théophile",
+          "ports": [
+            "010401"
+          ]
+        }
+      ],
+      "saskatchewan": [],
+      "yukon": [],
+      "baja_california": [
+        {
+          "name": "Mexicali",
+          "ports": [
+            "250302",
+            "250301",
+            "250201"
+          ]
+        },
+        {
+          "name": "Tecate",
+          "ports": [
+            "250501"
+          ]
+        },
+        {
+          "name": "Tijuana",
+          "ports": [
+            "250601",
+            "250602",
+            "250409",
+            "250401",
+            "250407"
+          ]
+        }
+      ],
+      "sonora": [
+        {
+          "name": "San Luis Rio Colorado",
+          "ports": [
+            "260801",
+            "260802"
+          ]
+        },
+        {
+          "name": "Sonoyta",
+          "ports": [
+            "260201"
+          ]
+        },
+        {
+          "name": "Nogales",
+          "ports": [
+            "260401",
+            "260402"
+          ]
+        },
+        {
+          "name": "Naco",
+          "ports": [
+            "260301"
+          ]
+        },
+        {
+          "name": "Agua Prieta",
+          "ports": [
+            "260101"
+          ]
+        }
+      ],
+      "chihuahua": [
+        {
+          "name": "Ciudad Juárez",
+          "ports": [
+            "240204",
+            "l24501",
+            "240201",
+            "240202",
+            "240203",
+            "240401",
+            "240801"
+          ]
+        },
+        {
+          "name": "Ojinaga",
+          "ports": [
+            "240301"
+          ]
+        },
+        {
+          "name": "Puerto Palomas",
+          "ports": [
+            "240601"
+          ]
+        }
+      ],
+      "coahuila": [
+        {
+          "name": "Ciudad Acuña",
+          "ports": [
+            "230201"
+          ]
+        },
+        {
+          "name": "Piedras Negras",
+          "ports": [
+            "230301",
+            "230302"
+          ]
+        }
+      ],
+      "nuevo_leon": [],
+      "taumalipas": [
+        {
+          "name": "Ciudad Camargo",
+          "ports": [
+            "230701"
+          ]
+        },
+        {
+          "name": "Ciudad Miguel Alemán",
+          "ports": [
+            "231001"
+          ]
+        },
+        {
+          "name": "Matamoros",
+          "ports": [
+            "535501",
+            "535502",
+            "535503",
+            "535504"
+          ]
+        },
+        {
+          "name": "Nuevo Laredo",
+          "ports": [
+            "230401",
+            "230402",
+            "230403",
+            "230404"
+          ]
+        },
+        {
+          "name": "Nuevo Progreso",
+          "ports": [
+            "230901",
+            "230902"
+          ]
+        },
+        {
+          "name": "Reynosa",
+          "ports": [
+            "230501",
+            "230502",
+            "230503"
+          ]
+        }
+      ]
     }
+  },
+  "translations": {
+    "es-mx": {
+      "MEXICO": "MÉXICO",
+      "Mexico": "México",
+      "mexico": "méxico",
+      "Nuevo Leon": "Nuevo León",
+      "NUEVO LEON": "NUEVO LEÓN",
+      "nuevo leon": "nuevo león"
+    }
+  }
 }
