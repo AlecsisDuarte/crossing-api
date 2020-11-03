@@ -87,7 +87,12 @@
         {
           "name": "Abbotsford",
           "ports": [
-            "300901",
+            "300901"
+          ]
+        },
+        {
+          "name": "Aldergrove",
+          "ports": [
             "302301"
           ]
         },
