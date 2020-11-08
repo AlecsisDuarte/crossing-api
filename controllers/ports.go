@@ -23,21 +23,6 @@ func V1GetPorts(c *gin.Context) {
 	utils.Ok(c, *portPt)
 }
 
-// V1GetPort returns the PortCBP with the specified PortNumber
-func V1GetPort(c *gin.Context) {
-	portNumber := c.Params.ByName("portNumber")
-	if utils.IsNotInt(&portNumber) {
-		utils.BadRequest(c, "You must specify a valid port number")
-		return
-	}
-	var port m.PortCBP
-	if err := dao.GetPort(&port, portNumber); err != nil {
-		utils.NotFound(c, err)
-		return
-	}
-	utils.Ok(c, port)
-}
-
 // V1RefreshPorts fetches all the CBPs port and updates the values in the database
 func V1RefreshPorts(c *gin.Context) {
 	log.Println("Refreshing CBP ports")
@@ -54,25 +39,4 @@ func V1RefreshPorts(c *gin.Context) {
 
 	response := fmt.Sprintf("Successfully updated %d ports", len(*ports))
 	utils.Ok(c, response)
-}
-
-// V1GetPortsByCountry returns a list of ports whose border is within the specified country
-func V1GetPortsByCountry(c *gin.Context) {
-	log.Println("Fetching CBP ports by country")
-	country := c.Params.ByName("country")
-	if utils.IsEmpty(&country) {
-		utils.BadRequest(c, "You must specify a valid country name")
-		return
-	}
-	border, found := libs.TranslateCountryToCBPBorder(country)
-	if !found {
-		utils.BadRequest(c, "The country has no border with the US")
-		return
-	}
-	var ports []m.PortCBP
-	if err := dao.GetPortsByBorder(&ports, border); err != nil {
-		utils.NotFound(c, err)
-		return
-	}
-	utils.Ok(c, ports)
 }

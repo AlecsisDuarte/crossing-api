@@ -14,6 +14,6 @@ func Init() {
 	database.Init()
 	router := SetupRouter()
 	port := utils.GetPort()
-	libs.GetMetadataJSON()
+	libs.UpdateMetadata()
 	router.Run(port)
 }

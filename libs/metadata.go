@@ -22,6 +22,19 @@ func GetMetadataJSON() *models.Metadata {
 		return cachedMetadata
 	}
 
+	metadata := readLocalMetadata()
+	log.Info("Successfully read the Metadata.json")
+	cacheMetada(&metadata)
+	return &metadata
+}
+
+// UpdateMetadata updates the cached metadata using the local JSON file
+func UpdateMetadata() {
+	metadata := readLocalMetadata()
+	cacheMetada(&metadata)
+}
+
+func readLocalMetadata() models.Metadata {
 	metadataJSON, err := os.Open("database/metadata.json")
 	if err != nil {
 		log.Fatal("Error reading database default metadata.json", err)
@@ -33,9 +46,7 @@ func GetMetadataJSON() *models.Metadata {
 
 	var metadata models.Metadata
 	json.Unmarshal([]byte(metadataByteValue), &metadata)
-	log.Info("Successfully read the Metadata.json")
-	cacheMetada(&metadata)
-	return &metadata
+	return metadata
 }
 
 func cacheMetada(metadata *models.Metadata) {
