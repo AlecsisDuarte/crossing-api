@@ -40,9 +40,9 @@ func print(severity string, format string, err error, params ...interface{}) {
 	var posfix = format
 	if len(params) > 0 {
 		posfix = fmt.Sprintf(posfix, params...)
-		if err != nil {
-			posfix = fmt.Sprintf("%v with downstream exception: \n%+v", posfix, err)
-		}
+	}
+	if err != nil {
+		posfix = fmt.Sprintf("%v with downstream exception: \n%+v", posfix, err)
 	}
 	fmt.Println(prefix, posfix)
 }

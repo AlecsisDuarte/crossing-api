@@ -1,3 +1,5 @@
+// +build !testing
+
 // Package utils stores all the utilities used in the project
 package utils
 
@@ -11,17 +13,33 @@ import (
 	"github.com/pkg/errors"
 )
 
-const productionKey = "PRODUCTION"
-const databaseURLKey = "DATABASE_URL"
-const serviceAccountKeyPathKey = "SERVICE_ACCOUNT_KEY_PATH"
-const portKey = "PORT"
-const defaultCacheExpiration = "DEFAULT_CACHE_DURATION_MINUTES"
-const defaultCacheCleanupInterval = "DEFAULT_CACHE_CLEANUP_INTERVAL_MINUTES"
+const (
+	// ProductionKey Used to validate if the server is in production or not
+	ProductionKey = "PRODUCTION"
+	// DatabaseURLKey URL that points to the Firebase database
+	DatabaseURLKey = "DATABASE_URL"
+	// ServiceAccountKeyPathKey Path to the Firebase service account key
+	ServiceAccountKeyPathKey = "SERVICE_ACCOUNT_KEY_PATH"
+	// PortKey Port used by the service
+	PortKey = "PORT"
+	// DefaultCacheExpirationKey Default cache expiration time in minutes
+	DefaultCacheExpirationKey = "DEFAULT_CACHE_DURATION_MINUTES"
+	// DefaultCacheCleanupIntervalKey Default cache cleanup interval time in minutes
+	DefaultCacheCleanupIntervalKey = "DEFAULT_CACHE_CLEANUP_INTERVAL_MINUTES"
+)
 
-func init() {
+// InitEnv Loads the given .env file or defaults to the current filepath .env file
+func InitEnv(filenames ...string) {
 	log.Info("Initializing ENV values")
-	if err := godotenv.Load(); err != nil {
-		log.Fatal("Error loading ENVIRONMENT", err)
+
+	if len(filenames) > 0 {
+		if err := godotenv.Load(filenames...); err != nil {
+			log.Fatal("Error loading ENVIRONMENT at %v", err, filenames)
+		}
+	} else {
+		if err := godotenv.Load(); err != nil {
+			log.Fatal("Error loading ENVIRONMENT at %v", err, filenames)
+		}
 	}
 }
 
@@ -47,7 +65,7 @@ func GetEnvBool(key string) bool {
 
 // IsProduction returns true if the application is running in release mode or false if not or not set
 func IsProduction() bool {
-	s := GetEnvString(productionKey)
+	s := GetEnvString(ProductionKey)
 	if IsEmpty(&s) {
 		log.Warn("Production ENV key not set, defaulting into false")
 		return false
@@ -62,17 +80,17 @@ func IsProduction() bool {
 
 // GetServiceAccountKeyPath returns the path to the firebase private account key
 func GetServiceAccountKeyPath() string {
-	return GetEnvString(serviceAccountKeyPathKey)
+	return GetEnvString(ServiceAccountKeyPathKey)
 }
 
 // GetDatabaseURL returns the URL of the database we will be working with
 func GetDatabaseURL() string {
-	return GetEnvString(databaseURLKey)
+	return GetEnvString(DatabaseURLKey)
 }
 
 // GetPort returns the PORT to be used on the server
 func GetPort() string {
-	port := os.Getenv(portKey)
+	port := os.Getenv(PortKey)
 	if IsEmpty(&port) {
 		port = "8080"
 	}
@@ -81,7 +99,7 @@ func GetPort() string {
 
 // GetCacheExpiration returns the DEFAULT_CACHE_DURATION_MINUTES value in ENV or returns the default 5 minutes
 func GetCacheExpiration() time.Duration {
-	s := os.Getenv(defaultCacheExpiration)
+	s := os.Getenv(DefaultCacheExpirationKey)
 	defaultExpiration := 5 * time.Minute
 
 	if IsEmpty(&s) {
@@ -99,7 +117,7 @@ func GetCacheExpiration() time.Duration {
 
 // GetCacheCleanupInterval returns the DEFAULT_CACHE_CLEANUP_INTERVAL_MINUTES value in ENV or returns the default 10 minutes
 func GetCacheCleanupInterval() time.Duration {
-	s := os.Getenv(defaultCacheCleanupInterval)
+	s := os.Getenv(DefaultCacheCleanupIntervalKey)
 	defaultExpiration := 10 * time.Minute
 
 	if IsEmpty(&s) {
