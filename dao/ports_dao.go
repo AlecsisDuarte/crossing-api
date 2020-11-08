@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"crossing-api/libs"
 	"crossing-api/libs/cache"
 	l "crossing-api/libs/log"
 	m "crossing-api/models"
@@ -11,22 +12,12 @@ const (
 	portsByBorderKeyPrefix = "CACHED_PORTS_BY_BORDER_"
 	portCachedKeyPrefix    = "CACHED_PORT_"
 	allPortsCachedKey      = "ALL_CACHED_PORTS"
+	allPortsMapedCachedKey = "ALL_CACHED_PORTS_MAPPED"
 )
 
-// UpdateAllPorts overrides all the CBP ports stored in the database or inserts them if they do not
-// exists
+// UpdateAllPorts overrides all the CBP ports cached
 func UpdateAllPorts(ports *[]m.PortCBP) (err error) {
-	l.Info("Mapping all ports to their respective PortNumber")
-	portMaps := make(map[string]m.PortCBP)
-	for i, port := range *ports {
-		portMaps[port.PortNumber] = (*ports)[i]
-	}
-
-	if err := portClient.Set(ctx, portMaps); err != nil {
-		l.Error("Error updating ports map", err)
-		return err
-	}
-	l.Info("Successfully updated ports")
+	cacheAllPorts(ports)
 	return nil
 }
 
@@ -38,16 +29,9 @@ func GetAllPorts(ports **[]m.PortCBP) (err error) {
 		*ports = cachedPorts
 		return nil
 	}
-	portsRef := *ports
-	portMaps := make(map[string]*m.PortCBP)
-	if err := portClient.Get(ctx, &portMaps); err != nil {
-		l.Error("Error reading value", err)
-		return err
-	}
-	for _, port := range portMaps {
-		*portsRef = append(*portsRef, *port)
-	}
-	cacheAllPorts(portsRef)
+	//In case our cached ports have gone stale, we update them
+	*ports = libs.FetchPorts()
+	cacheAllPorts(*ports)
 	return nil
 }
 

@@ -3,6 +3,7 @@ package server
 
 import (
 	"crossing-api/database"
+	"crossing-api/libs"
 	"crossing-api/libs/log"
 	"crossing-api/utils"
 )
@@ -13,6 +14,6 @@ func Init() {
 	database.Init()
 	router := SetupRouter()
 	port := utils.GetPort()
-
+	libs.GetMetadataJSON()
 	router.Run(port)
 }

@@ -11,23 +11,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// V1RefreshMetadata reads local Metadata json and uploads it into our database
+// V1RefreshMetadata reads local Metadata json and updates our cached information
 func V1RefreshMetadata(c *gin.Context) {
 	log.Info("Refresing metadata")
 	metadata := libs.GetMetadataJSON()
 	if metadata == nil {
 		utils.InternalError(c, "Error while reading local metadata information")
-		return
-	}
-
-	for index, country := range metadata.GeographicInfo.Countries {
-		metadata.GeographicInfo.Countries[index].Exchange = *libs.FetchExchangeRate(country.Currency)
-		metadata.GeographicInfo.Countries[index].Exchange.Symbol = country.Currency
-	}
-
-	log.Info("Updating metadata")
-	if err := dao.UploadMetadata(metadata); err != nil {
-		utils.InternalError(c, "Error while updating metadata information")
 		return
 	}
 	utils.Ok(c, "Successfully updated metadata")
