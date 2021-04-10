@@ -4,6 +4,7 @@ import (
 	"crossing-api/libs/cache"
 	"crossing-api/libs/log"
 	"crossing-api/models"
+	"crossing-api/utils"
 	"encoding/json"
 
 	"net/http"
@@ -11,13 +12,14 @@ import (
 )
 
 const (
-	baseURL                string = "https://api.exchangeratesapi.io/latest?"
-	baseKey                string = "base"
-	baseValue              string = "USD"
-	symbolsKey             string = "symbols"
-	mexAndCadSymbols       string = "MXN,CAD"
-	exchangeDescription    string = "Current and historical foreign exchange rates published by the European Central Bank"
-	exchangePrefixCacheKey string = "EXCHANGE_CACHED_"
+	baseURL              		string = "http://api.currencylayer.com/live?"
+	accessKeyKey				string = "access_key"
+	sourceKey              		string = "source"
+	baseValue              		string = "USD"
+	currenciesKey          		string = "currencies"
+	mexAndCadSymbols       		string = "MXN,CAD"
+	exchangeDescription			string = "The currencylayer API is a product built and maintained by apilayer."
+	exchangePrefixCacheKey	     string = "EXCHANGE_CACHED_"
 )
 
 // FetchExchangeRate makes a request to api.exchangeratesapi.io to fetch the specifide symbols exchanges rates using USD as base
@@ -34,8 +36,9 @@ func FetchExchangeRate(symbol string) *models.Exchange {
 	}
 
 	query := url.Query()
-	query.Set(baseKey, baseValue)
-	query.Add(symbolsKey, symbol)
+	query.Set(sourceKey, baseValue)
+	query.Add(currenciesKey, symbol)
+	query.Add(accessKeyKey, utils.GetCurrencyLayerAccessKey())
 	url.RawQuery = query.Encode()
 	res, err := http.Get(url.String())
 
@@ -46,8 +49,11 @@ func FetchExchangeRate(symbol string) *models.Exchange {
 	log.Info("Succesfully fetched the exchange rates")
 	var exchange models.Exchange
 	json.NewDecoder(res.Body).Decode(&exchange)
-	exchange.Source = url.String()
+	exchange.URL = url.String()
 	exchange.Description = exchangeDescription
+	//Legacy fields
+	exchange.Rates = quotesToRates(&exchange)
+	exchange.Base = exchange.Source
 	cacheExchange(symbol, &exchange)
 	return &exchange
 }
@@ -58,7 +64,8 @@ func FetchAllExchangeRates() *models.Exchange {
 }
 
 func cacheExchange(symbol string, exchange *models.Exchange) {
-	cache.Put(exchangePrefixCacheKey+symbol, exchange)
+	cacheDuration := utils.GetExchangeCacheExpirationKey();
+	cache.PutWithDuration(exchangePrefixCacheKey+symbol, exchange, cacheDuration)
 }
 
 func getCachedExchange(symbol string) (exchange *models.Exchange) {
@@ -70,4 +77,13 @@ func getCachedExchange(symbol string) (exchange *models.Exchange) {
 
 	log.Info("Exchange cached")
 	return res.(*models.Exchange)
+}
+
+func quotesToRates(exchange *models.Exchange) map[string]float64 {
+	var rates = map[string]float64{}
+	
+	for key, value := range exchange.Quotes {
+		rates[key[3:]] = value
+	}
+	return rates
 }

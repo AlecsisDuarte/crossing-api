@@ -20,12 +20,16 @@ const (
 	DatabaseURLKey = "DATABASE_URL"
 	// ServiceAccountKeyPathKey Path to the Firebase service account key
 	ServiceAccountKeyPathKey = "SERVICE_ACCOUNT_KEY_PATH"
+	// CurrencyLayerAccessKeyKey Key to make request against currencyLayer API
+	CurrencyLayerAccessKeyKey = "CURRENCY_LAYER_ACCESS_KEY"
 	// PortKey Port used by the service
 	PortKey = "PORT"
 	// DefaultCacheExpirationKey Default cache expiration time in minutes
 	DefaultCacheExpirationKey = "DEFAULT_CACHE_DURATION_MINUTES"
 	// DefaultCacheCleanupIntervalKey Default cache cleanup interval time in minutes
 	DefaultCacheCleanupIntervalKey = "DEFAULT_CACHE_CLEANUP_INTERVAL_MINUTES"
+	// DefaultExchangeCacheExpirationKey Default cache cleanup interval time in hours
+	DefaultExchangeCacheExpirationKey = "DEFAULT_EXCHANGE_CACHE_EXPIRATION_KEY"
 )
 
 // InitEnv Loads the given .env file or defaults to the current filepath .env file
@@ -83,6 +87,11 @@ func GetServiceAccountKeyPath() string {
 	return GetEnvString(ServiceAccountKeyPathKey)
 }
 
+// GetCurrencyLayerAccessKey returns the access key to make request against CurrencyLayer
+func GetCurrencyLayerAccessKey() string {
+	return GetEnvString(CurrencyLayerAccessKeyKey)
+}
+
 // GetDatabaseURL returns the URL of the database we will be working with
 func GetDatabaseURL() string {
 	return GetEnvString(DatabaseURLKey)
@@ -131,4 +140,22 @@ func GetCacheCleanupInterval() time.Duration {
 		return defaultExpiration
 	}
 	return time.Minute * time.Duration(minutes)
+}
+
+// GetExchangeCacheExpirationKey returns the DefaultExchangeCacheExpirationKey value in ENV or returns the default 4 hours
+func GetExchangeCacheExpirationKey() time.Duration {
+	s := os.Getenv(DefaultExchangeCacheExpirationKey)
+	defaultExpiration := 4 * time.Hour
+
+	if IsEmpty(&s) {
+		log.Warn("Default cache cleanup interval not set. Using 4 hours as default")
+		return defaultExpiration
+	}
+
+	hours, err := ToInt(&s)
+	if err != nil {
+		log.Warn("Default cache expiration incorrectly set. Using 4 hours as default")
+		return defaultExpiration
+	}
+	return time.Hour * time.Duration(hours)
 }

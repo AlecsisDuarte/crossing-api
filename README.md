@@ -11,12 +11,14 @@ This project requires a [Firebase account](https://console.firebase.google.com/)
 1. Create [Firebase project](https://console.firebase.google.com/)
 2. Create test database within your firebase project
 3. Download the database private key using this [tutorial](https://firebase.google.com/docs/admin/setup/#initialize-sdk)
+5. Create an account in [Currency Layer](https://currencylayer.com/quickstart) and copy the API access key
 4. Create your `.env`  file with this keys:
 
 ```env
    PRODUCTION = <BOOL> //Set TRUE if running a production environment
    DATABASE_URL = <STRING> //URL towards your created Database
    SERVICE_ACCOUNT_KEY_PATH = <STRING> //Relative path to the private key
+   CURRENCY_LAYER_ACCESS_KEY = <STRING> // Access key from currencylayer.com
 ```
 
 5. Run with `go run main.go`
